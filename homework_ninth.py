@@ -10,22 +10,16 @@ def input_error(func) -> callable:
         try:
             result = func(*args, **kwargs)
         except KeyError:
-            print(
-                f"Entered name '{args[0]}' was not found. "
-                f"Type help() for details."
-            )
+            return f"Entered name '{args[0]}' was not found. "\
+                   f"Type help() for details."
         except ValueError:
-            print(
-                f"Entered phone is not valid, only digits without any "
-                f"separators allowed, entered phone: "
-                f"'{args[0].split()[2]}'. "
-                f"Type help() for details."
-            )
+            return f"Entered phone is not valid, only digits without any "\
+                   f"separators allowed, entered phone: "\
+                   f"'{args[0].split()[2]}'. "\
+                   f"Type help() for details."
         except (IndexError, TypeError):
-            print(
-                f"Missing command part, entered data: '{args[0]}', type "
-                f"'help' to see supported commands or exit to stop the bot."
-            )
+            return f"Missing command part, entered data: '{args[0]}', type "\
+                   f"'help' to see supported commands or exit to stop the bot."
         else:
             return result
     return wrapper
